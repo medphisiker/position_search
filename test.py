@@ -1,210 +1,57 @@
-from solution_debug import binary_search
+from solution_debug import find_insert_position
+
+
+def run_single_test(array, number, expected_position, test_name=""):
+    print(f"\n--- Running test: {test_name} ---")
+    print(f"array: {array}")
+    print(f"number: {number}")
+    print(f"expected_position: {expected_position}")
+    position = find_insert_position(array, number)
+    print(f"actual_position: {position}")
+    assert position == expected_position, f"Test failed for {test_name}: expected {expected_position}, got {position}"
+    print(f"--- Test {test_name} passed ---")
 
 
 def test():
-    # Тест нечетное число элементов в начале массива
-    array = [5, 7, 9, 11, 13]
-    number = 6
-    correct_position = 1
+    # Тесты на вставку в начало
+    run_single_test([5, 7, 9, 11, 13], 4, 0, "Insert before first element")
+    run_single_test([5, 7, 9, 11, 13], 5, 0, "Insert at first element")
     
-    print(f"\narray:{array}")
-    print(f"number:{number}")
-    print(f"{correct_position}")
-    position = binary_search(array, number)
-    print(f"position:{position}")
-    assert position == correct_position
+    # Тесты на вставку в середину
+    run_single_test([5, 7, 9, 11, 13], 6, 1, "Insert between 5 and 7")
+    run_single_test([5, 7, 9, 11, 13], 8, 2, "Insert between 7 and 9")
+    run_single_test([5, 7, 9, 11, 13], 10, 3, "Insert between 9 and 11")
+    run_single_test([5, 7, 9, 11, 13], 12, 4, "Insert between 11 and 13")
     
-    # Тест нечетное число элементов в начале массива
-    array = [5, 7, 9, 11, 13]
-    number = 7
-    correct_position = 1
+    # Тесты на вставку в конец
+    run_single_test([5, 7, 9, 11, 13], 13, 4, "Insert at last element")
+    run_single_test([5, 7, 9, 11, 13], 15, 5, "Insert after last element")
     
-    print(f"\narray:{array}")
-    print(f"number:{number}")
-    print(f"{correct_position}")
-    position = binary_search(array, number)
-    print(f"position:{position}")
-    assert position == correct_position
+    # Тесты на поиск существующих элементов
+    run_single_test([5, 7, 9, 11, 13], 5, 0, "Find first element")
+    run_single_test([5, 7, 9, 11, 13], 7, 1, "Find second element")
+    run_single_test([5, 7, 9, 11, 13], 9, 2, "Find middle element")
+    run_single_test([5, 7, 9, 11, 13], 11, 3, "Find fourth element")
+    run_single_test([5, 7, 9, 11, 13], 13, 4, "Find last element")
     
-    # Тест нечетное число элементов в начале массива
-    array = [5, 7, 9, 11, 13]
-    number = 5
-    correct_position = 0
+    # Тесты для четного количества элементов
+    run_single_test([5, 7, 9, 11, 13, 16], 6, 1, "Insert in even array between 5 and 7")
+    run_single_test([5, 7, 9, 11, 13, 16], 14, 5, "Insert in even array between 13 and 16")
+    run_single_test([5, 7, 9, 11, 13, 16], 16, 5, "Find last element in even array")
     
-    print(f"\narray:{array}")
-    print(f"number:{number}")
-    print(f"{correct_position}")
-    position = binary_search(array, number)
-    print(f"position:{position}")
-    assert position == correct_position
+    # Тесты для маленьких массивов
+    run_single_test([5, 7], 6, 1, "Insert in 2-element array")
+    run_single_test([5, 7], 4, 0, "Insert before 2-element array")
+    run_single_test([5, 7], 8, 2, "Insert after 2-element array")
     
-    # Тест нечетное число элементов в начале массива
-    array = [5, 7, 9, 11, 13]
-    number = 4
-    correct_position = 0
+    # Тесты для одноэлементного массива
+    run_single_test([5], 5, 0, "Find in 1-element array")
+    run_single_test([5], 3, 0, "Insert before 1-element array")
+    run_single_test([5], 7, 1, "Insert after 1-element array")
     
-    print(f"\narray:{array}")
-    print(f"number:{number}")
-    print(f"{correct_position}")
-    position = binary_search(array, number)
-    print(f"position:{position}")
-    assert position == correct_position
-    
-    # Тест четное число элементов в начале массива
-    array = [5, 7, 9, 11, 13, 16]
-    number = 6
-    correct_position = 1
-    
-    print(f"\narray:{array}")
-    print(f"number:{number}")
-    print(f"{correct_position}")
-    position = binary_search(array, number)
-    print(f"position:{position}")
-    assert position == correct_position
-    
-    # Тест четное число элементов в начале массива
-    array = [5, 7, 9, 11, 13, 16]
-    number = 7
-    correct_position = 1
-    
-    print(f"\narray:{array}")
-    print(f"number:{number}")
-    print(f"{correct_position}")
-    position = binary_search(array, number)
-    print(f"position:{position}")
-    assert position == correct_position
-    
-    # Тест четное число элементов в начале массива
-    array = [5, 7, 9, 11, 13, 16]
-    number = 5
-    correct_position = 0
-    
-    print(f"\narray:{array}")
-    print(f"number:{number}")
-    print(f"{correct_position}")
-    position = binary_search(array, number)
-    print(f"position:{position}")
-    assert position == correct_position
-    
-    # Тест нечетное число элементов в середине массива
-    array = [5, 7, 9, 11, 13]
-    number = 11
-    correct_position = 3
-    
-    print(f"\narray:{array}")
-    print(f"number:{number}")
-    print(f"{correct_position}")
-    position = binary_search(array, number)
-    print(f"position:{position}")
-    assert position == correct_position
-    
-    # Тест нечетное число элементов в середине массива
-    array = [5, 7, 9, 11, 13]
-    number = 9
-    correct_position = 2
-    
-    print(f"\narray:{array}")
-    print(f"number:{number}")
-    print(f"{correct_position}")
-    position = binary_search(array, number)
-    print(f"position:{position}")
-    assert position == correct_position
-    
-    # Тест нечетное число элементов в середине массива
-    array = [5, 7, 9, 11, 13]
-    number = 10
-    correct_position = 3
-    
-    print(f"\narray:{array}")
-    print(f"number:{number}")
-    print(f"{correct_position}")
-    position = binary_search(array, number)
-    print(f"position:{position}")
-    assert position == correct_position
-    
-    # Тест нечетное число элементов в конце массива
-    array = [5, 7, 9, 11, 13]
-    number = 11
-    correct_position = 3
-    
-    print(f"\narray:{array}")
-    print(f"number:{number}")
-    print(f"{correct_position}")
-    position = binary_search(array, number)
-    print(f"position:{position}")
-    assert position == correct_position
-    
-    # Тест нечетное число элементов в конце массива
-    array = [5, 7, 9, 11, 13]
-    number = 13
-    correct_position = 4
-    
-    print(f"\narray:{array}")
-    print(f"number:{number}")
-    print(f"{correct_position}")
-    position = binary_search(array, number)
-    print(f"position:{position}")
-    assert position == correct_position
-    
-    # Тест нечетное число элементов в конце массива
-    array = [5, 7, 9, 11, 13]
-    number = 12
-    correct_position = 4
-    
-    print(f"\narray:{array}")
-    print(f"number:{number}")
-    print(f"{correct_position}")
-    position = binary_search(array, number)
-    print(f"position:{position}")
-    assert position == correct_position
-    
-    # Тест нечетное число элементов в конце массива
-    array = [5, 7, 9, 11, 13]
-    number = 15
-    correct_position = 5
-    
-    print(f"\narray:{array}")
-    print(f"number:{number}")
-    print(f"{correct_position}")
-    position = binary_search(array, number)
-    print(f"position:{position}")
-    assert position == correct_position
-    
-    # Тест всего 2 элемента в массиве
-    array = [5, 7]
-    number = 6
-    correct_position = 1
-    
-    print(f"\narray:{array}")
-    print(f"number:{number}")
-    print(f"{correct_position}")
-    position = binary_search(array, number)
-    print(f"position:{position}")
-    assert position == correct_position
-    
-    # Тест всего 1 элемент в массиве
-    array = [5]
-    number = 5
-    correct_position = 0
-    
-    print(f"\narray:{array}")
-    print(f"number:{number}")
-    print(f"{correct_position}")
-    position = binary_search(array, number)
-    print(f"position:{position}")
-    assert position == correct_position
-    
-    # Тест пустой массив
-    array = []
-    number = 5 # любое число
-    correct_position = 0  # Для пустого массива позиция всегда 0
-    
-    print(f"\narray:{array}")
-    print(f"number:{number}")
-    print(f"{correct_position}")
-    position = binary_search(array, number)
-    print(f"position:{position}")
-    assert position == correct_position
+    # Тест для пустого массива
+    run_single_test([], 5, 0, "Insert in empty array")
+
 
 if __name__ == "__main__":
     test()
