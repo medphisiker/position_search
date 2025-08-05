@@ -48,6 +48,7 @@ def binary_search(array: list[int], number: int) -> int:
     right = len(array) - 1
 
     # бинарный поиск до схождения к двум последним элементам
+    middle = left
     while right - left > 1:
         middle = left + (right - left) // 2
 
@@ -73,8 +74,8 @@ def binary_search(array: list[int], number: int) -> int:
 
 def print_pointers_on_array(array, left, right, middle):
     pointers_viz = [" " * len(str(num)) for num in array]
-    pointers_viz[left] = "l" + adding_spaces(left, pointers_viz)
     pointers_viz[middle] = "m" + adding_spaces(middle, pointers_viz)
+    pointers_viz[left] = "l" + adding_spaces(left, pointers_viz)
     pointers_viz[right] = "r" + adding_spaces(right, pointers_viz)
     print(" ".join(pointers_viz))
     print(" ".join(str(num) for num in array))

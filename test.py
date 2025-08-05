@@ -169,6 +169,30 @@ def test():
     position = binary_search(array, number)
     print(f"position:{position}")
     assert position == correct_position
+    
+    # Тест всего 2 элемента в массиве
+    array = [5, 7]
+    number = 6
+    correct_position = 1
+    
+    print(f"\narray:{array}")
+    print(f"number:{number}")
+    print(f"{correct_position}")
+    position = binary_search(array, number)
+    print(f"position:{position}")
+    assert position == correct_position
+    
+    # Тест всего 1 элемент в массиве
+    array = [5]
+    number = 5
+    correct_position = 0
+    
+    print(f"\narray:{array}")
+    print(f"number:{number}")
+    print(f"{correct_position}")
+    position = binary_search(array, number)
+    print(f"position:{position}")
+    assert position == correct_position
 
 if __name__ == "__main__":
     test()
