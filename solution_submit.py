@@ -22,7 +22,7 @@ def find_insert_position(array: list[int], target: int) -> int:
     # оптимизация для значений лежащих вне диапазона массива
     if target <= array[0]:
         return 0
-    if target > array[-1] + 1:
+    if target > array[-1]:
         return len(array)
     
     left, right = 0, len(array) - 1
