@@ -193,6 +193,18 @@ def test():
     position = binary_search(array, number)
     print(f"position:{position}")
     assert position == correct_position
+    
+    # Тест всего 1 элемент в массиве
+    array = [0]
+    number = 5 # любое число
+    correct_position = 0
+    
+    print(f"\narray:{array}")
+    print(f"number:{number}")
+    print(f"{correct_position}")
+    position = binary_search(array, number)
+    print(f"position:{position}")
+    assert position == correct_position
 
 if __name__ == "__main__":
     test()

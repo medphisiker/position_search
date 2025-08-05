@@ -44,6 +44,10 @@ def binary_search(array: list[int], number: int) -> int:
         int: индекс, числа найденного в массиве или индекс, где это число
         должно находиться, чтобы сохранить порядок сортировки.
     """
+    # обработка пустого массива
+    if not array:
+        return 0
+    
     left = 0
     right = len(array) - 1
 
