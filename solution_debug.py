@@ -27,8 +27,8 @@
 # 5 7 9 11 13
 
 
-def binary_search(array: list[int], number: int) -> int:
-    """Функция находит позицию указанного числа number в отсортированном
+def binary_search(array: list[int], target: int) -> int:
+    """Функция находит позицию указанного числа target в отсортированном
     по возрастанию массиве array.
 
     Использует паттерн binary search.
@@ -38,7 +38,7 @@ def binary_search(array: list[int], number: int) -> int:
 
     Args:
         array (list[int]): отсортированный по возрастанию массив целых чисел.
-        number (int): число, которое мы ищем в массиве.
+        target (int): число, которое мы ищем в массиве.
 
     Returns:
         int: индекс, числа найденного в массиве или индекс, где это число
@@ -48,39 +48,39 @@ def binary_search(array: list[int], number: int) -> int:
     if not array:
         return 0
     
-    left = 0
-    right = len(array) - 1
-
-    # бинарный поиск до схождения к двум последним элементам
-    middle = left
-    while right - left > 1:
-        middle = left + (right - left) // 2
-
+    left, right = 0, len(array) - 1
+    
+    # стандартный бинарный поиск с визуализацией
+    while left <= right:
+        mid = left + (right - left) // 2
+        
         # визуализация работы алгоритма
-        print_pointers_on_array(array, left, right, middle)
-
-        if array[middle] == number:
-            return middle
-
-        if number < array[middle]:
-            right = middle
+        print_pointers_on_array(array, left, right, mid)
+        
+        if array[mid] == target:
+            return mid
+        elif array[mid] < target:
+            left = mid + 1
         else:
-            left = middle
-
-    # обработка последних двух элементов
-    print_pointers_on_array(array, left, right, middle)
-
-    if array[left] < number:
-        return right
-    else:
-        return left
+            right = mid - 1
+    
+    # если элемент не найден, left указывает на позицию для вставки
+    # финальная визуализация не нужна, так как она создает путаницу
+    return left
 
 
 def print_pointers_on_array(array, left, right, middle):
+    # Проверка границ массива перед доступом к элементам
     pointers_viz = [" " * len(str(num)) for num in array]
-    pointers_viz[middle] = "m" + adding_spaces(middle, pointers_viz)
-    pointers_viz[left] = "l" + adding_spaces(left, pointers_viz)
-    pointers_viz[right] = "r" + adding_spaces(right, pointers_viz)
+    
+    # Добавляем указатели, проверяя границы
+    if 0 <= middle < len(array):
+        pointers_viz[middle] = "m" + adding_spaces(middle, pointers_viz)
+    if 0 <= left < len(array):
+        pointers_viz[left] = "l" + adding_spaces(left, pointers_viz)
+    if 0 <= right < len(array):
+        pointers_viz[right] = "r" + adding_spaces(right, pointers_viz)
+        
     print(" ".join(pointers_viz))
     print(" ".join(str(num) for num in array))
 

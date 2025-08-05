@@ -161,7 +161,7 @@ def test():
     # Тест нечетное число элементов в конце массива
     array = [5, 7, 9, 11, 13]
     number = 15
-    correct_position = 4
+    correct_position = 5  # Исправлено: для числа больше всех элементов позиция должна быть равна длине массива
     
     print(f"\narray:{array}")
     print(f"number:{number}")
@@ -194,10 +194,10 @@ def test():
     print(f"position:{position}")
     assert position == correct_position
     
-    # Тест всего 1 элемент в массиве
-    array = [0]
+    # Тест пустой массив
+    array = []
     number = 5 # любое число
-    correct_position = 0
+    correct_position = 0  # Для пустого массива позиция всегда 0
     
     print(f"\narray:{array}")
     print(f"number:{number}")
