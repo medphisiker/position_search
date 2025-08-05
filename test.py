@@ -161,7 +161,7 @@ def test():
     # Тест нечетное число элементов в конце массива
     array = [5, 7, 9, 11, 13]
     number = 15
-    correct_position = 5  # Исправлено: для числа больше всех элементов позиция должна быть равна длине массива
+    correct_position = 5
     
     print(f"\narray:{array}")
     print(f"number:{number}")
