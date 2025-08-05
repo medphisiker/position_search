@@ -6,25 +6,20 @@
 # выход
 # 2
 
-#         l   m      r
+#         l     m    r
 # массив: 4 5 7 9 11 13
 
 #         l m r
 # массив: 4 5 7 9 11 13
 
+#           m
 #           l r
 # массив: 4 5 7 9 11 13
 
-# обработка последних двух элементов
-# if array[l] < number:
-#     return r
-# else:
-#     return l
-
-# array[l]
-
-# l   m    r
-# 5 7 9 11 13
+#           m
+#           r
+#             l
+# массив: 4 5 7 9 11 13
 
 
 def binary_search(array: list[int], target: int) -> int:
@@ -47,32 +42,31 @@ def binary_search(array: list[int], target: int) -> int:
     # обработка пустого массива
     if not array:
         return 0
-    
+
     left, right = 0, len(array) - 1
-    
+
     # стандартный бинарный поиск с визуализацией
     while left <= right:
         mid = left + (right - left) // 2
-        
+
         # визуализация работы алгоритма
         print_pointers_on_array(array, left, right, mid)
-        
+
         if array[mid] == target:
             return mid
         elif array[mid] < target:
             left = mid + 1
         else:
             right = mid - 1
-    
+
     # если элемент не найден, left указывает на позицию для вставки
-    # финальная визуализация не нужна, так как она создает путаницу
     return left
 
 
 def print_pointers_on_array(array, left, right, middle):
     # Проверка границ массива перед доступом к элементам
     pointers_viz = [" " * len(str(num)) for num in array]
-    
+
     # Добавляем указатели, проверяя границы
     if 0 <= middle < len(array):
         pointers_viz[middle] = "m" + adding_spaces(middle, pointers_viz)
@@ -80,7 +74,7 @@ def print_pointers_on_array(array, left, right, middle):
         pointers_viz[left] = "l" + adding_spaces(left, pointers_viz)
     if 0 <= right < len(array):
         pointers_viz[right] = "r" + adding_spaces(right, pointers_viz)
-        
+
     print(" ".join(pointers_viz))
     print(" ".join(str(num) for num in array))
 
