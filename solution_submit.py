@@ -1,4 +1,4 @@
-def binary_search(array: list[int], target: int) -> int:
+def find_insert_position(array: list[int], target: int) -> int:
     """Функция находит позицию указанного числа target в отсортированном
     по возрастанию массиве array.
 
@@ -18,6 +18,12 @@ def binary_search(array: list[int], target: int) -> int:
     # обработка пустого массива
     if not array:
         return 0
+    
+    # оптимизация для значений лежащих вне диапазона массива
+    if target <= array[0]:
+        return 0
+    if target > array[-1] + 1:
+        return len(array)
     
     left, right = 0, len(array) - 1
     
@@ -41,5 +47,5 @@ if __name__ == "__main__":
     array = list(map(int, input().split()))
     number = int(input())
 
-    position = binary_search(array, number)
+    position = find_insert_position(array, number)
     print(position)

@@ -22,7 +22,7 @@
 # массив: 4 5 7 9 11 13
 
 
-def binary_search(array: list[int], target: int) -> int:
+def find_insert_position(array: list[int], target: int) -> int:
     """Функция находит позицию указанного числа target в отсортированном
     по возрастанию массиве array.
 
@@ -42,6 +42,12 @@ def binary_search(array: list[int], target: int) -> int:
     # обработка пустого массива
     if not array:
         return 0
+
+    # оптимизация для значений лежащих вне диапазона массива
+    if target <= array[0]:
+        return 0
+    if target > array[-1] + 1:
+        return len(array)
 
     left, right = 0, len(array) - 1
 
